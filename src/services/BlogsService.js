@@ -11,8 +11,9 @@ class BlogsService {
     const blogs = res.data.map(b => new Blog(b))
     AppState.blogs = blogs
   }
-  setActiveBlog(blog) {
-    AppState.activeBlog = blog
+  setActiveBlog(blogProp) {
+
+    AppState.activeBlog = blogProp
     logger.log('Active Blog', AppState.activeBlog)
   }
 

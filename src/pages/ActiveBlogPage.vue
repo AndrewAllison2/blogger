@@ -3,7 +3,7 @@
     <div class="row">
 
 
-      <div class="col-10 m-auto">
+      <div v-if="activeBlog" class="col-10 m-auto">
         <div class="d-flex justify-content-center mt-3 mb-3">
           <img class="img-fluid cover-img" :src="activeBlog.imgUrl" :alt="activeBlog.title">
         </div>
@@ -14,7 +14,7 @@
             <p>{{activeBlog.creator.name}}</p>
             <p>{{activeBlog.updatedAt.toLocaleDateString()}}</p>
           </div>
-          <button class="btn btn-info">EDIT</button>
+          <button class="btn btn-info edit-button">EDIT</button>
         </div>
         <p>{{activeBlog.body}}</p>
       </div>
@@ -32,6 +32,7 @@ import { AppState } from "../AppState.js";
 export default {
   setup(){
     return {
+    
       activeBlog: computed(() => AppState.activeBlog)
     }
   }
@@ -41,8 +42,8 @@ export default {
 
 <style lang="scss" scoped>
 .avatar{
-  height: 20vh;
-  width: 20vh;
+  height: 15vh;
+  width: 15vh;
   border-radius: 50%;
 }
 .cover-img{
@@ -50,5 +51,10 @@ export default {
   max-height: 50vh;
   width: 50vw;
   object-position: bottom;
+}
+.edit-button{
+  width: 12vw;
+  height: 5vh;
+  align-items: center;
 }
 </style>

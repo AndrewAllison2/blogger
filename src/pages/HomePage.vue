@@ -32,7 +32,7 @@
   </div>
 </div>
 
-      <div class="d-flex col-10 m-auto p-3 mb-4 border border-dark rounded elevation-4 blogCard selectable" @click="setActiveBlog(blog)" v-for="blog in blogs" :key="blog.id">
+      <div class="d-flex col-10 m-auto p-3 mb-4 border border-dark rounded elevation-4 blogCard" v-for="blog in blogs" :key="blog.id">
           <!-- SECTION CARD INFORMATION -->
           <div class="d-flex">
             <BlogPost :blogProp="blog" />
@@ -77,7 +77,7 @@ export default {
             try {
               const blogData = editable.value
               await blogsService.createBlog(blogData)
-              $('#collapseBlogForm').collapse('hide')
+              // $('#collapseBlogForm').collapse('hide')
             } catch (error) {
               Pop.error(error.message)
             }

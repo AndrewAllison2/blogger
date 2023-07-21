@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { authGuard } from '@bcwdev/auth0provider-client'
+import { Blog } from "./models/Blog.js"
 
 function loadPage(page) {
   return () => import(`./pages/${page}.vue`)

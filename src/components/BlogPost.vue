@@ -10,7 +10,7 @@
     <p>{{ blogProp.createdAt.toLocaleDateString() }}</p>
     <div>
       <router-link class="text-black" :to="{name: 'ActiveBlog'}">
-        <button class="btn btn-success me-2">View Blog Post</button>
+        <button @click="setActiveBlog(blogProp)" class="btn btn-success me-2">View Blog Post</button>
       </router-link>
       <button @click="deleteBlog()" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
     </div>
@@ -27,8 +27,11 @@
 
 
 <script>
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
 import { Blog } from "../models/Blog.js";
 import { blogsService } from "../services/BlogsService.js";
+import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
 
 export default {
@@ -37,6 +40,8 @@ export default {
   },
   setup(props){
     return {
+      blog: computed(() => AppState.activeBlog),
+            
       async deleteBlog() {
         try {
           const confirmed = await Pop.confirm('are you sure you want to delete this blog?')
@@ -48,8 +53,16 @@ export default {
         } catch (error) {
           Pop.error(error.message)
         }
-      }
+      },
 
+      setActiveBlog(blogProp) {
+        
+        logger.log('Here is my blog Id', )
+        logger.log('setting active blog')
+            blogsService.setActiveBlog(blogProp)
+          },
+
+          
     }
   }
 }
